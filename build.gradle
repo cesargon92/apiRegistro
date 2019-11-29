@@ -1,0 +1,29 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.1.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+}
+
+group = 'cl.sentra'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	
+	compile group: 'com.auth0', name: 'java-jwt', version: '3.7.0'
+	testCompile group: 'com.h2database', name: 'h2', version: '1.4.200'
+	compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.8.Final'
+	compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.29'
+}
+
+test {
+	useJUnitPlatform()
+}
