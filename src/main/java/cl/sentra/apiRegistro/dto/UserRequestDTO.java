@@ -1,24 +1,30 @@
 package cl.sentra.apiRegistro.dto;
 
-import java.io.Serializable;
 import java.util.List;
 
-import org.springframework.stereotype.Component;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
-@Component
-public class UserDTO implements Serializable {
+public class UserRequestDTO {
 
-	private static final long serialVersionUID = 1L;
-	
 	private String id;
-	private String name;
-	private String email;
-	private String password;
-	private List<PhoneDTO> phones;
 	
-	public UserDTO() {
-		super();
-	}
+	@NotNull(message="Debe agregar su nombre")
+	private String name;
+	
+	@NotNull(message="Debe agregar su email")
+	@Email(message="Correo ingresado no es válido")
+	private String email;
+	
+	@NotNull(message="Debe incluir una contraseña")
+	@Pattern(regexp="^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9].*[0-9]).{1,}$",
+			message="Su contraseña debe contener al menos una mayúscula, una minúscula y dos números")
+	private String password;
+	
+	@NotEmpty(message="Debe agregar al menos un número de teléfono")
+	private List<PhoneDTO> phones;
 
 	public String getId() {
 		return id;
@@ -58,23 +64,6 @@ public class UserDTO implements Serializable {
 
 	public void setPhones(List<PhoneDTO> phones) {
 		this.phones = phones;
-	}
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("UserDTO [id=");
-		builder.append(id);
-		builder.append(", name=");
-		builder.append(name);
-		builder.append(", email=");
-		builder.append(email);
-		builder.append(", password=");
-		builder.append(password);
-		builder.append(", phones=");
-		builder.append(phones);
-		builder.append("]");
-		return builder.toString();
 	}
 	
 	
