@@ -1,10 +1,11 @@
 package cl.sentra.apiRegistro.dao;
 
-import cl.sentra.apiRegistro.dto.UserDTO;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface UserDao {
+import cl.sentra.apiRegistro.model.User;
 
-	public int saveUser(UserDTO user);
-	
-	public UserDTO getUserByEmail(String email);
+@Repository
+public interface UserDao extends JpaRepository<User, Long>{
+
 }

@@ -1,8 +1,11 @@
 package cl.sentra.apiRegistro.dao;
 
-import cl.sentra.apiRegistro.dto.PhoneDTO;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface PhoneDao {
+import cl.sentra.apiRegistro.model.Phone;
 
-	public int addPhone (PhoneDTO phone);
+@Repository
+public interface PhoneDao extends JpaRepository<Phone, Long>{
+
 }

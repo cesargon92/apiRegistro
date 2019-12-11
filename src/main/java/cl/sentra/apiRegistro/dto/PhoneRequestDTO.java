@@ -1,47 +1,60 @@
 package cl.sentra.apiRegistro.dto;
 
-public class PhoneDTO {
+import javax.validation.constraints.NotBlank;
 
-	private String userId;
+public class PhoneRequestDTO {
+	
+	
+	private Long id;
+	
+	@NotBlank(message="Debe agregar el número de contacto")
 	private String number;
+	
+	@NotBlank(message="Debe agregar el código de ciudad")
 	private String cityCode;
+	
+	@NotBlank(message="Debe agregar el código del país")
 	private String contryCode;
-		
-	public PhoneDTO() {
-		super();
+	
+	public PhoneRequestDTO() {
+
 	}
 	
-	public PhoneDTO(String userId, String number, String cityCode, String contryCode) {
-		super();
-		this.userId = userId;
+	public PhoneRequestDTO(Long id, String number, String cityCode, String contryCode) {
+		this.id = id;
 		this.number = number;
 		this.cityCode = cityCode;
 		this.contryCode = contryCode;
 	}
 
-	public String getUserId() {
-		return userId;
+	public Long getId() {
+		return id;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getNumber() {
 		return number;
 	}
+
 	public void setNumber(String number) {
 		this.number = number;
 	}
+
 	public String getCityCode() {
 		return cityCode;
 	}
+
 	public void setCityCode(String cityCode) {
 		this.cityCode = cityCode;
 	}
+
 	public String getContryCode() {
 		return contryCode;
 	}
+
 	public void setContryCode(String contryCode) {
 		this.contryCode = contryCode;
 	}
@@ -49,8 +62,8 @@ public class PhoneDTO {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("PhoneDTO [userId=");
-		builder.append(userId);
+		builder.append("PhoneRequestDTO [id=");
+		builder.append(id);
 		builder.append(", number=");
 		builder.append(number);
 		builder.append(", cityCode=");
@@ -59,6 +72,10 @@ public class PhoneDTO {
 		builder.append(contryCode);
 		builder.append("]");
 		return builder.toString();
-	}	
+	}
+
+	
+	
+	
 	
 }

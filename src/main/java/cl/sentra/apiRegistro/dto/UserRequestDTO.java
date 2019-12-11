@@ -2,14 +2,15 @@ package cl.sentra.apiRegistro.dto;
 
 import java.util.List;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 public class UserRequestDTO {
 
-	private String id;
+	private Long id;
 	
 	@NotNull(message="Debe agregar su nombre")
 	private String name;
@@ -24,13 +25,14 @@ public class UserRequestDTO {
 	private String password;
 	
 	@NotEmpty(message="Debe agregar al menos un número de teléfono")
-	private List<PhoneDTO> phones;
+	@Valid
+	private List<PhoneRequestDTO> phones;
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -58,11 +60,11 @@ public class UserRequestDTO {
 		this.password = password;
 	}
 
-	public List<PhoneDTO> getPhones() {
+	public List<PhoneRequestDTO> getPhones() {
 		return phones;
 	}
 
-	public void setPhones(List<PhoneDTO> phones) {
+	public void setPhones(List<PhoneRequestDTO> phones) {
 		this.phones = phones;
 	}
 	
