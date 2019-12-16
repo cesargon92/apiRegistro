@@ -5,7 +5,7 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
-import org.dozer.Mapper;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import cl.sentra.apiRegistro.dto.UserRequestDTO;
+import cl.sentra.apiRegistro.dto.UserResponseDTO;
 import cl.sentra.apiRegistro.model.User;
 import cl.sentra.apiRegistro.service.UserServiceImpl;
 
@@ -28,15 +29,16 @@ public class UserController {
 	private UserServiceImpl userService;
 
 	@Autowired
-	private Mapper mapper;
+	private ModelMapper mapper;
 
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
-	public ResponseEntity<String> addUser(@RequestBody @Valid UserRequestDTO userRequest) {
+	public ResponseEntity<?> addUser(@RequestBody @Valid UserRequestDTO userRequest) {
 
 		User user = mapper.map(userRequest, User.class);
-		userService.save(user);
+		User insertedUser = userService.save(user);
+		UserResponseDTO userResponse = mapper.map(insertedUser, UserResponseDTO.class);
 		
-		return ResponseEntity.ok("User data is valid");
+		return ResponseEntity.ok(userResponse);
 	}
 
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
