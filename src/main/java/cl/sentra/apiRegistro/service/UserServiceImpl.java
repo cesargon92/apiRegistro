@@ -5,6 +5,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import cl.sentra.apiRegistro.dao.UserDao;
+import cl.sentra.apiRegistro.exception.EmailRegisteredException;
 import cl.sentra.apiRegistro.model.User;
 import cl.sentra.apiRegistro.util.JwtTokenUtil;
 
@@ -20,7 +21,13 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-	public User save(User user) {
+	public User save(User user) throws EmailRegisteredException {
+		
+		User registeredUser = userDao.findByEmail(user.getEmail());
+		if(registeredUser != null) {
+			throw new EmailRegisteredException();
+		}
+		
 		String userToken = jwtUtil.generateToken(user.getEmail());
 		user.setToken(userToken);
 		user.setActive(true);
