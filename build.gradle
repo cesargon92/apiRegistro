@@ -26,6 +26,8 @@ dependencies {
 	compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.29'
 	compile group: 'org.modelmapper', name: 'modelmapper', version: '2.3.5'
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.1.10.RELEASE'
+	
+	testCompile group: 'org.slf4j', name: 'slf4j-jdk14', version: '1.7.29'
 }
 
 test {

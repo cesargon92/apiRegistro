@@ -20,7 +20,7 @@ public class UserRequestDTO {
 	private String email;
 	
 	@NotNull(message="Debe incluir una contraseña")
-	@Pattern(regexp="^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9].*[0-9]).{1,}$",
+	@Pattern(regexp="^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9].*[0-9]).{1,}",
 			message="Su contraseña debe contener al menos una mayúscula, una minúscula y dos números")
 	private String password;
 	
