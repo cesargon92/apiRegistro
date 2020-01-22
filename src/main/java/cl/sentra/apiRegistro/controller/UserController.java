@@ -16,7 +16,13 @@ import cl.sentra.apiRegistro.dto.UserRequestDTO;
 import cl.sentra.apiRegistro.dto.UserResponseDTO;
 import cl.sentra.apiRegistro.model.User;
 import cl.sentra.apiRegistro.service.UserServiceImpl;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
+@Api(value="Sistema de administración de registros")
 @RestController
 public class UserController {
 
@@ -28,8 +34,16 @@ public class UserController {
 	@Autowired
 	private ModelMapper mapper;
 
+	@ApiOperation(value = "Registra un nuevo usuario en Base de Datos y retorna objeto con token", response = ResponseEntity.class)
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Usuario ingresado con éxito"),
+			@ApiResponse(code = 400, message = "Bad Request"),
+			@ApiResponse(code = 500, message = "Internal Error. Email ya registrado")
+	})
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
-	public ResponseEntity<?> addUser(@RequestBody @Valid UserRequestDTO userRequest) {
+	public ResponseEntity<?> addUser(
+			@ApiParam(value = "Usuario a almacenar en base de datos", required = true)
+			@RequestBody @Valid UserRequestDTO userRequest) {
 
 		LOGGER.info("[addUser] Inicio");
 		LOGGER.info("[addUser] Mapping from Request DTO");

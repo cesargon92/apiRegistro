@@ -4,9 +4,6 @@ import javax.validation.constraints.NotBlank;
 
 public class PhoneRequestDTO {
 	
-	
-	private Long id;
-	
 	@NotBlank(message="Debe agregar el número de contacto")
 	private String number;
 	
@@ -20,19 +17,10 @@ public class PhoneRequestDTO {
 
 	}
 	
-	public PhoneRequestDTO(Long id, String number, String cityCode, String contryCode) {
-		this.id = id;
+	public PhoneRequestDTO(String number, String cityCode, String contryCode) {
 		this.number = number;
 		this.cityCode = cityCode;
 		this.contryCode = contryCode;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getNumber() {
@@ -62,9 +50,7 @@ public class PhoneRequestDTO {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("PhoneRequestDTO [id=");
-		builder.append(id);
-		builder.append(", number=");
+		builder.append("PhoneRequestDTO [number=");
 		builder.append(number);
 		builder.append(", cityCode=");
 		builder.append(cityCode);
@@ -74,6 +60,7 @@ public class PhoneRequestDTO {
 		return builder.toString();
 	}
 
+	
 	
 	
 	
